@@ -1,1 +1,1 @@
-dbstudy
+gd dbstudy
