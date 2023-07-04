@@ -14,7 +14,6 @@
 -- 자격증에서는 DML의 범주를 INSERT, UPDATE, DELETE + SELECT로 보기도 한다.
 
 
-
 -- 테이블 삭제 
 DROP TABLE EMPLOYEE_T;
 DROP TABLE DEPARTMENT_T;
@@ -35,7 +34,7 @@ CREATE TABLE EMPLOYEE_T(
     HIRE_DATE       DATE                NULL,
     SALARY          NUMBER              NULL,
     CONSTRAINT PK_EMPLOYEE PRIMARY KEY(EMP_NO),
-    CONSTRAINT FK_DEPART_EMP FOREIGN KEY(DEPART) REFERENCES DEPARTMENT_T(DEPT_NO) ON DELETE SET NULL
+    CONSTRAINT FK_DEPART_EMP FOREIGN KEY(DEPART) REFERENCES DEPARTMENT_T(DEPT_NO) ON DELETE CASCADE
 );
 
 
@@ -67,12 +66,50 @@ CREATE SEQUENCE EMP_SEQ
     START WITH 1001
     ORDER;
 
-INSERT INTO EMPLOYEE_T VALUES(EMP_SEQ.NEXTVAL, '구창민', '과장', 1, 'M', '95/05/01', 5000000);
-INSERT INTO EMPLOYEE_T VALUES(EMP_SEQ.NEXTVAL, '김민서', '사원', 2, 'M', '17/09/01', 2500000);
-INSERT INTO EMPLOYEE_T VALUES(EMP_SEQ.NEXTVAL, '이은영', '부장', 3, 'F', '90/09/01', 5500000);
-INSERT INTO EMPLOYEE_T VALUES(EMP_SEQ.NEXTVAL, '한성일', '과장', 4, 'M', '93/04/01', 5000000);
+INSERT INTO EMPLOYEE_T VALUES(EMP_SEQ.NEXTVAL, '구창민', 1, '과장', 'M', '95/05/01', 5000000);
+INSERT INTO EMPLOYEE_T VALUES(EMP_SEQ.NEXTVAL, '김민서', 1, '사원', 'M', '17/09/01', 2500000);
+INSERT INTO EMPLOYEE_T VALUES(EMP_SEQ.NEXTVAL, '이은영', 2, '부장', 'F', '90/09/01', 5500000);
+INSERT INTO EMPLOYEE_T VALUES(EMP_SEQ.NEXTVAL, '한성일', 2, '과장', 'M', '93/04/01', 5000000);
 COMMIT;
 
-ROLLBACK;
+-- ROLLBACK;
 -- 날짜는 하이픈 (-) 또는 슬래시로 구분해야한다.
 --(EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY)
+
+-- 수정 과정
+/*
+    UPDATE 테이블
+    SET 업데이트할 내용, 업데이트할 내용, ... 
+    WHERE 조건식
+*/
+
+-- 1. 부서번호가 3인 부서의 지역을 '인천'으로 변경하시오.
+UPDATE DEPARTMENT_T
+   SET LOCATION ='인천'    -- SET절의 등호(=)는 대입연산자
+ WHERE DEPT_NO = 3;      -- WHERE절의 등로(=)는 동등비교연산자
+
+
+--2. 부서번호가 2인 부서에 근무하는 모든 사원들의 연봉을 500000 증가시키오 
+UPDATE EMPLOYEE_T
+   SET SALARY = SALARY + 500000
+ WHERE DEPART = 2;
+
+-- 삭제
+/*
+    DELETE
+      FROM 테이블
+     WHERE 조건식
+*/
+-- 1. 지역이 '인천'인 부서를 삭제하시오. ('인천'에근무하는 사원이 없다.)
+
+DELETE 
+  FROM DEPARTMENT_T
+ WHERE LOCATION = '인천'; -- 동등비교연산자
+
+-- 2. 지역이 '서울'인 부서를 삭제하시오. ('서울'에 근무하는 사원이있다-> ON DELETE SET NULL 옵션에 의해서 부서정보가 NULL 값으로 처리된다.)
+
+DELETE
+  FROM DEPARTMENT_T
+ WHERE LOCATION = '서울';
+
+
