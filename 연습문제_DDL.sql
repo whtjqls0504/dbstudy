@@ -6,6 +6,9 @@
 --    5) 회원구분: MEM_GUBUN, VARCHAR2(7 BYTE), 'REGULAR', 'SOCIAL' 값 중 하나를 가짐 --값은 INSERT를 뜻함
 --    6) 회원이메일: MEM_EMAIL, VARCHAR2(100 BYTE), 중복 불가
 
+-- 일반키가 아니더라도 유니크 관계는 
+-- 1:M 관계를 맺을 수 있음. 
+
 CREATE TABLE MEMBER_T(
     MEM_NO NUMBER NOT NULL --PK
    ,MEM_ID VARCHAR2(30 BYTE) NOT NULL UNIQUE --회원 아이디
