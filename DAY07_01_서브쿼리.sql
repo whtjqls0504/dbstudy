@@ -55,7 +55,33 @@ SELECT *
 -- 이 결과는 중복값임. 단일행 연산자가 아닌 IN 다중행 서브쿼리 연산자 IN을 사용하여 작성하라.
 -- 서브쿼리의 DEPARTMENT_NAME 칼럼은 중복이 있을 수 있으므로 다중행 서브쿼리로 처리한다.
 
+-- 3. 'Seattle'에서 근무하는 사원 조회하기 
+SELECT *
+  FROM EMPLOYEES
+ WHERE DEPARTMENT_ID IN (SELECT DEPARTMENT_ID
+                          FROM DEPARTMENTS
+                         WHERE LOCATION_ID IN (SELECT LOCATION_ID
+                                                 FROM LOCATIONS
+                                                WHERE CITY = 'Seattle'));
 
+-- 4. 연봉 가장 높은 사원 조회하기 
+SELECT *
+  FROM EMPLOYEES 
+ WHERE SALARY = (SELECT MAX(SALARY)
+                   FROM EMPLOYEES);
+                   
+-- 5. 가장 먼저 입사한 사원 조회하기 
+SELECT *
+  FROM EMPLOYEES 
+ WHERE HIRE_DATE = (SELECT MIN(HIRE_DATE)
+                      FROM EMPLOYEES);
+
+
+-- 6. 평균 연봉 이상을 받는 사원 조회하기 
+SELECT *
+  FROM EMPLOYEES
+ WHERE SALARY >= (SELECT AVG(SALARY)
+                    FROM EMPLOYEES);
 
 /* FROM 절의 서브쿼리  */
 -- VIEW > 가상 테이블

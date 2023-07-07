@@ -24,7 +24,6 @@ SELECT EMPLOYEE_ID, HIRE_DATE
  WHERE RN BETWEEN 1 AND 10;
  
  
- 
 -- 2. 부서별 부서번호, 부서명, 연봉총액을 조회하기
 -- 1) 조인
 SELECT MY.DEPARTMENT_ID

@@ -76,6 +76,8 @@ COMMIT;
 -- 날짜는 하이픈 (-) 또는 슬래시로 구분해야한다.
 --(EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY)
 
+
+
 -- 수정 과정
 /*
     UPDATE 테이블
