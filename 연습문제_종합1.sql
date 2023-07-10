@@ -355,5 +355,8 @@ DELETE
  WHERE USER_NO = 5; -- 실패 외래키 값 발견
 
 COMMIT;
--- 
+
+
+
+
 

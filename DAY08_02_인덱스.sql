@@ -38,6 +38,7 @@ SELECT *
  WHERE TO_CHAR(EMPLOYEE_ID) = '150';
 
 
+
 /*
     데이터 사전
     1. 특정 데이터의 정보를 담고 있는 객체이다.

@@ -13,9 +13,11 @@ CREATE VIEW V_EMP AS (
         ON D.DEPARTMENT_ID = E.DEPARTMENT_ID
 );
 
+
 -- 뷰 조회하기 
 SELECT *
   FROM V_EMP;
+  
   
   
 -- 뷰를 이용한 조회 연습
@@ -26,12 +28,13 @@ SELECT V.EMPLOYEE_ID, V.FIRST_NAME, V.LAST_NAME, V.DEPARTMENT_ID, V.DEPARTMENT_N
     ON L.LOCATION_ID = V.LOCATION_ID;
     
     
+    
 -- 2. 사원번호, 사원명, 직무번호, 직무이름(JOB_TITLE)을 조회하시오.
 SELECT V.EMPLOYEE_ID, V.FIRST_NAME, V.LAST_NAME, J.JOB_ID, J.JOB_TITLE
   FROM JOBS J INNER JOIN V_EMP V
     ON J.JOB_ID = V.JOB_ID;
     
+    
+    
 -- 뷰 삭제 
 DROP VIEW V_EMP;
-
-    
