@@ -326,7 +326,7 @@ DELETE
                    FROM BUY_T);
 
 COMMIT;
-R
+
 -- 아래 쿼리는 비 추천.
 -- 시퀀스를 사용하였으나, INSERT 자체가 실패한 경우  가장 큰 구매번호와 CURRVAL 값은 다르다. 
 
